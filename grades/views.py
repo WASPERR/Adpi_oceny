@@ -48,3 +48,11 @@ class UserGradeListView(APIView):
         if not grade:
             return Response({"res": "Object not found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = Gradeserializer(grade)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    def delete(self, request, grade_id, *args, **kwargs):
+        grade = self.get_object(grade_id, request.user.id)
+        if not grade:
+            return Response({"res": "Object not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        grade.delete()
+        return Response({"res": "Object deleted"}, status=status.HTTP_200_OK)
