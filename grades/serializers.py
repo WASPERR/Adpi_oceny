@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from grades.models import Grade
 
-class Gradeserializer(serializers.ModelSerializer):
+class Grades_serializer(serializers.ModelSerializer):
     class Meta:
         model = Grade
         fields = ['grade','id_user','created_at']
